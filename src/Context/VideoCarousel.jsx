@@ -169,7 +169,6 @@ const NewLaunches = () => {
               />
             </svg>
 
-         
           </button>
 
           <div
@@ -360,7 +359,6 @@ const NewLaunches = () => {
                 strokeLinejoin="round"
               />
             </svg>
-
 
           </button>
         </div>
