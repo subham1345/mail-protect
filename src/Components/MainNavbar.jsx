@@ -98,6 +98,7 @@ const MainNavbar = () => {
         }
         .nav-links {
           white-space: nowrap;
+          
         }
         .icon-button {
           background: none;
@@ -348,6 +349,8 @@ const MainNavbar = () => {
         .close-button:hover {
           color: #ff4444;
         }
+   
+         }
       `}</style>
 
       {/* Navbar */}
@@ -359,7 +362,7 @@ const MainNavbar = () => {
           className="d-flex align-items-center justify-content-between"
           style={{ maxWidth: "1200px", marginLeft: "130px" }}
         >
-          <Navbar.Brand href="/" className="p-0">
+          <Navbar.Brand href="/" className="p-0" >
             <img
               src="https://www.milprotech.com/public/logo.png"
               alt="Logo"
@@ -487,10 +490,7 @@ const MainNavbar = () => {
             aria-modal="true"
             aria-labelledby="user-popup-title"
           >
-            <div
-              className="user-popup"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="user-popup" onClick={(e) => e.stopPropagation()}>
               {/* Left side */}
               <div className="user-popup-left">
                 {/* Top Box: logo + paragraph */}
@@ -499,9 +499,7 @@ const MainNavbar = () => {
                     src="https://www.milprotech.com/public/logo.png"
                     alt="Logo"
                   />
-                  <p>
-                    Welcome to Portronics-India’s most loved gadget Brand!
-                  </p>
+                  <p>Welcome to Portronics-India’s most loved gadget Brand!</p>
                 </div>
 
                 {/* Bottom Box: 3 divs with heading + paragraph */}
@@ -509,13 +507,15 @@ const MainNavbar = () => {
                   <div>
                     <h4>Need Help?</h4>
                     <p>
-                      Reach out to our support team for any assistance or queries.
+                      Reach out to our support team for any assistance or
+                      queries.
                     </p>
                   </div>
                   <div>
                     <h4>Contact Us</h4>
                     <p>
-                      Email us at support@example.com or call us during business hours.
+                      Email us at support@example.com or call us during business
+                      hours.
                     </p>
                   </div>
                   <div>
@@ -530,7 +530,8 @@ const MainNavbar = () => {
               {/* Right side */}
               <div className="user-popup-right">
                 <p>
-                  Stay updated with the latest news and offers. Enter your mobile number below to receive notifications.
+                  Stay updated with the latest news and offers. Enter your
+                  mobile number below to receive notifications.
                 </p>
 
                 <label htmlFor="mobileNumber">Mobile Number</label>
@@ -540,8 +541,6 @@ const MainNavbar = () => {
                   placeholder="+1 234 567 8901"
                   aria-label="Mobile Number"
                 />
-
-
 
                 <div className="notify-updates">
                   <input
@@ -553,7 +552,8 @@ const MainNavbar = () => {
                 </div>
 
                 <p>
-                  We respect your privacy and will never share your information without your consent.
+                  We respect your privacy and will never share your information
+                  without your consent.
                 </p>
 
                 <div
@@ -562,7 +562,8 @@ const MainNavbar = () => {
                   tabIndex={0}
                   onClick={() => alert("Privacy Policy clicked")}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") alert("Privacy Policy clicked");
+                    if (e.key === "Enter" || e.key === " ")
+                      alert("Privacy Policy clicked");
                   }}
                 >
                   Privacy Policy
@@ -574,7 +575,8 @@ const MainNavbar = () => {
                   tabIndex={0}
                   onClick={() => alert("Trouble logging in clicked")}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") alert("Trouble logging in clicked");
+                    if (e.key === "Enter" || e.key === " ")
+                      alert("Trouble logging in clicked");
                   }}
                 >
                   Trouble Logging In?
