@@ -648,7 +648,7 @@ const MainNavbar = () => {
         <div
           style={{
             position: "fixed",
-            top: 110,
+            top: topNavbarHidden ? 69 : 110,
             right: 0,
             width: "250px",
             height: "100vh",
