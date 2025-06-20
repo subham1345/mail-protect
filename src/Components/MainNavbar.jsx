@@ -372,10 +372,10 @@ const MainNavbar = () => {
       {/* Navbar */}
       <Navbar
         className={`main-navbar ${topNavbarHidden ? "move-up" : ""}`}
-        bg="blue"
+        // bg="blue"
         expand="lg"
         // className="fixed-top shadow-sm border-bottom"
-        style={{ backgroundColor: "yellow" }}
+        style={{ backgroundColor: "white" }}
       >
         <Container
           className="d-flex align-items-center justify-content-between"
