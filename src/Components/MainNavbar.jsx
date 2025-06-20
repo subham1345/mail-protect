@@ -59,18 +59,18 @@ const MainNavbar = () => {
         .main-navbar.move-up {
           top: 0;
         }
-          .brand-logo {
-            height: 45px;
-            width: 210px;
-            object-fit: contain;
-          }
+        .brand-logo {
+          height: 45px;
+          width: 210px;
+          object-fit: contain;
+        }
 
-          @media (max-width: 768px) {
-            .brand-logo {
-              height: 35px;
-              width: 160px;
-            }
+        @media (max-width: 768px) {
+          .brand-logo {
+            height: 35px;
+            width: 160px;
           }
+        }
 
         .search-form {
           max-width: 500px;
@@ -364,6 +364,17 @@ const MainNavbar = () => {
           color: #ff4444;
         }
 
+        /* Make the Categories dropdown color black */
+        .nav-links .dropdown-toggle,
+        .nav-links .dropdown-toggle:focus,
+        .nav-links .dropdown-toggle:active,
+        .nav-links .dropdown-toggle:visited {
+          color: #000 !important;
+        }
+        .nav-links .dropdown-menu {
+          min-width: 180px;
+        }
+
         @media(max-width: 768px) {
         .
         }
@@ -372,7 +383,7 @@ const MainNavbar = () => {
       {/* Navbar */}
       <Navbar
         className={`main-navbar ${topNavbarHidden ? "move-up" : ""}`}
-        // bg="blue"
+        bg="blue"
         expand="lg"
         // className="fixed-top shadow-sm border-bottom"
         style={{ backgroundColor: "white" }}
@@ -649,18 +660,35 @@ const MainNavbar = () => {
             transition: "transform 0.6s ease-in-out",
           }}
         >
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            <li style={{ padding: "0.5rem 0", borderBottom: "1px solid #eee" }}>
-              Home
-            </li>
-            <li style={{ padding: "0.5rem 0", borderBottom: "1px solid #eee" }}>
-              About
-            </li>
-            <li style={{ padding: "0.5rem 0", borderBottom: "1px solid #eee" }}>
-              Services
-            </li>
-            <li style={{ padding: "0.5rem 0" }}>Contact</li>
-          </ul>
+          <Nav
+            className="justify-content-start gap-3 px-3 mx-auto nav-links"
+            style={{ whiteSpace: "nowrap", display: "flex" }}
+          >
+            <NavDropdown
+              title="Categories"
+              id="categories-dropdown"
+              className="text-dark fw-medium me-2"
+              menuVariant="light"
+            >
+              <NavDropdown.Item href="#cat1">Category 1</NavDropdown.Item>
+              <NavDropdown.Item href="#cat2">Category 2</NavDropdown.Item>
+              <NavDropdown.Item href="#cat3">Category 3</NavDropdown.Item>
+              <NavDropdown.Item href="#cat4">Category 4</NavDropdown.Item>
+              <NavDropdown.Item href="#cat5">Category 5</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="#new" className="text-dark fw-medium px-2">
+              New Arrival
+            </Nav.Link>
+            <Nav.Link href="#gifting" className="text-dark fw-medium px-2">
+              Corporate Gifting
+            </Nav.Link>
+            <Nav.Link href="#warranty" className="text-dark fw-medium px-2">
+              Warranty Registration
+            </Nav.Link>
+            <Nav.Link href="#support" className="text-dark fw-medium px-2">
+              Support
+            </Nav.Link>
+          </Nav>
         </div>
       )}
     </>

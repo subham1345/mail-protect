@@ -233,7 +233,7 @@ const ComputerAccessories = () => {
               style={{
                 flex: "1 0 auto",
                 padding: "0.15rem 6px",
-                whiteSpace: "nowrap",
+                whiteSpace: "normal",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 fontSize: "14px",

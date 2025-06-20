@@ -29,13 +29,13 @@ const App = () => {
               <Home />
               <PopularCategories />
               <NewLaunches />
-              <VideoCarousel />
+              {/* <VideoCarousel /> */}
               {/* <Accessories /> */}
               {/* <ComputerAccessories /> */}
               {/* <CarAccessories />  */}
               {/* <MobileAccessories /> */}
               {/* <Video />  */}
-              {/* <PressConference /> */}
+              <PressConference />
               <Footer />
             </>
           }
