@@ -7,12 +7,14 @@ import {
   faTimes,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const MainNavbar = () => {
   const [topNavbarHidden, setTopNavbarHidden] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showCartPanel, setShowCartPanel] = useState(false);
   const [showUserPopup, setShowUserPopup] = useState(false);
+  const [toggleSidebar, setToggleSidebar] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -57,6 +59,19 @@ const MainNavbar = () => {
         .main-navbar.move-up {
           top: 0;
         }
+          .brand-logo {
+            height: 45px;
+            width: 210px;
+            object-fit: contain;
+          }
+
+          @media (max-width: 768px) {
+            .brand-logo {
+              height: 35px;
+              width: 160px;
+            }
+          }
+
         .search-form {
           max-width: 500px;
           width: 100%;
@@ -98,7 +113,6 @@ const MainNavbar = () => {
         }
         .nav-links {
           white-space: nowrap;
-          
         }
         .icon-button {
           background: none;
@@ -349,94 +363,107 @@ const MainNavbar = () => {
         .close-button:hover {
           color: #ff4444;
         }
-   
-         }
+
+        @media(max-width: 768px) {
+        .
+        }
       `}</style>
 
       {/* Navbar */}
       <Navbar
         className={`main-navbar ${topNavbarHidden ? "move-up" : ""}`}
+        bg="blue"
         expand="lg"
+        // className="fixed-top shadow-sm border-bottom"
+        style={{ backgroundColor: "yellow" }}
       >
         <Container
           className="d-flex align-items-center justify-content-between"
-          style={{ maxWidth: "1200px", marginLeft: "130px" }}
+          style={{ maxWidth: "1200px" }}
         >
-          <Navbar.Brand href="/" className="p-0" >
-            <img
+          <Navbar.Brand href="/" className="">
+            {/* <img
               src="https://www.milprotech.com/public/logo.png"
               alt="Logo"
               style={{
                 height: "45px",
                 width: "210px",
                 objectFit: "contain",
-                marginLeft: "-15px",
               }}
+            /> */}
+            <img
+              src="https://www.milprotech.com/public/logo.png"
+              alt="Logo"
+              className="brand-logo"
             />
           </Navbar.Brand>
-
-          {!showSearch ? (
-            <Nav
-              className="justify-content-center gap-4 px-3 mx-auto nav-links"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              <NavDropdown
-                title="Categories"
-                id="categories-dropdown"
-                className="text-dark fw-medium px-2"
-                menuVariant="light"
+          {/* Hide nav in mobile view */}
+          <div className="d-none d-lg-block flex-grow-1">
+            {!showSearch ? (
+              <Nav
+                className="justify-content-center gap-4 px-3 mx-auto nav-links"
+                style={{ whiteSpace: "nowrap", display: "flex" }}
               >
-                <NavDropdown.Item href="#cat1">Category 1</NavDropdown.Item>
-                <NavDropdown.Item href="#cat2">Category 2</NavDropdown.Item>
-                <NavDropdown.Item href="#cat3">Category 3</NavDropdown.Item>
-                <NavDropdown.Item href="#cat4">Category 4</NavDropdown.Item>
-                <NavDropdown.Item href="#cat5">Category 5</NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#new" className="text-dark fw-medium px-2">
-                New Arrival
-              </Nav.Link>
-              <Nav.Link href="#gifting" className="text-dark fw-medium px-2">
-                Corporate Gifting
-              </Nav.Link>
-              <Nav.Link href="#warranty" className="text-dark fw-medium px-2">
-                Warranty Registration
-              </Nav.Link>
-              <Nav.Link href="#support" className="text-dark fw-medium px-2">
-                Support
-              </Nav.Link>
-            </Nav>
-          ) : (
-            <Form
-              className="search-form"
-              onSubmit={(e) => e.preventDefault()}
-              role="search"
-              aria-label="Site Search"
-            >
-              <div className="search-input-wrapper">
-                <FontAwesomeIcon icon={faSearch} className="search-icon-left" />
-                <input
-                  type="search"
-                  placeholder="Search by Product Name or SKU"
-                  className="form-control search-input"
-                  autoFocus
-                  aria-label="Search"
-                />
-                <button
-                  type="button"
-                  className="search-close-btn"
-                  onClick={() => setShowSearch(false)}
-                  aria-label="Close search"
+                <NavDropdown
+                  title="Categories"
+                  id="categories-dropdown"
+                  className="text-dark fw-medium px-2"
+                  menuVariant="light"
                 >
-                  <FontAwesomeIcon icon={faTimes} />
-                </button>
-              </div>
-            </Form>
-          )}
-
+                  <NavDropdown.Item href="#cat1">Category 1</NavDropdown.Item>
+                  <NavDropdown.Item href="#cat2">Category 2</NavDropdown.Item>
+                  <NavDropdown.Item href="#cat3">Category 3</NavDropdown.Item>
+                  <NavDropdown.Item href="#cat4">Category 4</NavDropdown.Item>
+                  <NavDropdown.Item href="#cat5">Category 5</NavDropdown.Item>
+                </NavDropdown>
+                <Nav.Link href="#new" className="text-dark fw-medium px-2">
+                  New Arrival
+                </Nav.Link>
+                <Nav.Link href="#gifting" className="text-dark fw-medium px-2">
+                  Corporate Gifting
+                </Nav.Link>
+                <Nav.Link href="#warranty" className="text-dark fw-medium px-2">
+                  Warranty Registration
+                </Nav.Link>
+                <Nav.Link href="#support" className="text-dark fw-medium px-2">
+                  Support
+                </Nav.Link>
+              </Nav>
+            ) : (
+              <Form
+                className="search-form"
+                onSubmit={(e) => e.preventDefault()}
+                role="search"
+                aria-label="Site Search"
+              >
+                <div className="search-input-wrapper">
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    className="search-icon-left"
+                  />
+                  <input
+                    type="search"
+                    placeholder="Search by Product Name or SKU"
+                    className="form-control search-input"
+                    autoFocus
+                    aria-label="Search"
+                  />
+                  <button
+                    type="button"
+                    className="search-close-btn"
+                    onClick={() => setShowSearch(false)}
+                    aria-label="Close search"
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </button>
+                </div>
+              </Form>
+            )}
+          </div>
           {/* Icon Group */}
-          <div className="d-flex align-items-center gap-3">
+          <div className="d-flex align-items-center gap-2 ">
             <button
-              className="icon-button"
+              className="icon-button d-none d-lg-block"
               aria-label="Search"
               onClick={toggleSearch}
             >
@@ -444,7 +471,7 @@ const MainNavbar = () => {
             </button>
 
             <button
-              className="icon-button"
+              className="icon-button d-none d-lg-block"
               aria-label="Cart"
               onClick={toggleCartPanel}
             >
@@ -452,11 +479,21 @@ const MainNavbar = () => {
             </button>
 
             <button
-              className="user-icon-button"
+              className="user-icon-button d-none d-lg-block"
               aria-label="User"
               onClick={openUserPopup}
             >
               <FontAwesomeIcon icon={faUser} />
+            </button>
+            <button
+              className="btn d-block d-lg-none"
+              aria-label="Toggle Menu"
+              onClick={() => setToggleSidebar(!toggleSidebar)}
+            >
+              <FontAwesomeIcon
+                icon={toggleSidebar ? faTimes : faBars}
+                size="lg"
+              />
             </button>
           </div>
         </Container>
@@ -594,6 +631,37 @@ const MainNavbar = () => {
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </>
+      )}
+
+      {toggleSidebar && (
+        <div
+          style={{
+            position: "fixed",
+            top: 110,
+            right: 0,
+            width: "250px",
+            height: "100vh",
+            backgroundColor: "#fff",
+            boxShadow: "2px 0 8px rgba(0, 0, 0, 0.1)",
+            zIndex: 1050,
+            padding: "1rem",
+            transform: toggleSidebar ? "translateX(0)" : "translateX(100%)",
+            transition: "transform 0.6s ease-in-out",
+          }}
+        >
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            <li style={{ padding: "0.5rem 0", borderBottom: "1px solid #eee" }}>
+              Home
+            </li>
+            <li style={{ padding: "0.5rem 0", borderBottom: "1px solid #eee" }}>
+              About
+            </li>
+            <li style={{ padding: "0.5rem 0", borderBottom: "1px solid #eee" }}>
+              Services
+            </li>
+            <li style={{ padding: "0.5rem 0" }}>Contact</li>
+          </ul>
+        </div>
       )}
     </>
   );
