@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './TopNavBar.module.css';
 
 const messages = [
   { text: "Free Shipping on orders above ₹999!", link: "/shipping-info" },

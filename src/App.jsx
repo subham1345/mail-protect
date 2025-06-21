@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import FirstNavbar from "./Components/TopNavbar";
+import TopNavbar from "./Components/TopNavbar";
 import MainNavbar from "./Components/MainNavbar";
 import Home from "./Components/Home";
 import PopularCategories from "./Context/PopularCategories";
@@ -18,7 +18,7 @@ import BottomNavbar from "./Components/BottomNavbar";
 const App = () => {
   return (
     <Router>
-      <FirstNavbar />
+      <TopNavbar />
       <MainNavbar />
       <BottomNavbar />
       <Routes>
@@ -29,12 +29,12 @@ const App = () => {
               <Home />
               <PopularCategories />
               <NewLaunches />
-              {/* <VideoCarousel /> */}
-              {/* <Accessories /> */}
-              {/* <ComputerAccessories /> */}
-              {/* <CarAccessories />  */}
-              {/* <MobileAccessories /> */}
-              {/* <Video />  */}
+              <VideoCarousel />
+              <Accessories />
+              <ComputerAccessories />
+              <CarAccessories /> 
+              <MobileAccessories />
+              <Video /> 
               <PressConference />
               <Footer />
             </>

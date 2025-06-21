@@ -47,7 +47,7 @@ const Home = () => {
 
   return (
     <>
-      <style>{`
+      {/* <style>{`
         .dot {
           display: inline-block;
           width: 28px;
@@ -61,7 +61,7 @@ const Home = () => {
         .dot.active {
           background-color: #333;
         }
-      `}</style>
+      `}</style> */}
 
       <div className="container-fluid pt-5" style={{marginTop: '70px'}}>
         <div className="row justify-content-center">
