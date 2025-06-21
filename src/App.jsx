@@ -1,4 +1,5 @@
 import React from "react";
+// import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TopNavbar from "./Components/TopNavbar";
 import MainNavbar from "./Components/MainNavbar";
@@ -30,11 +31,11 @@ const App = () => {
               <PopularCategories />
               <NewLaunches />
               <VideoCarousel />
-              {/* <Accessories /> */}
-              {/* <ComputerAccessories /> */}
-              {/* <CarAccessories />  */}
-              {/* <MobileAccessories /> */}
-              {/* <Video />  */}
+              <Accessories />
+              <ComputerAccessories />
+              <CarAccessories /> 
+              <MobileAccessories />
+              <Video /> 
               <PressConference />
               <Footer />
             </>

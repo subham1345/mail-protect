@@ -86,7 +86,7 @@ const NewLaunches = () => {
     { image: "", tag: "View All", isViewAll: true },
   ];
 
-  const [startIndex, setStartIndex] = useState(0);
+  // const [startIndex, setStartIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
   const [currentPage, setCurrentPage] = useState(0);
 
