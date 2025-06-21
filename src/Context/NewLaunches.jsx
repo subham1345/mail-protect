@@ -88,19 +88,27 @@ const NewLaunches = () => {
 
   const [startIndex, setStartIndex] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  // Responsive check
+  // Update visible launches
+  const visibleLaunches = launches.slice(
+    currentPage * itemsPerPage,
+    currentPage * itemsPerPage + itemsPerPage
+  );
+
+  // Calculate total pages
+  const totalPages = Math.ceil(launches.length / itemsPerPage);
+
   useEffect(() => {
     const updateItemsPerPage = () => {
       const width = window.innerWidth;
-      if (width < 768) {
-        setItemsPerPage(1); // small
-      } else if (width >= 768 && width < 1024) {
-        setItemsPerPage(2); // medium
-      } else {
-        setItemsPerPage(4); // large and up
-      }
-      setStartIndex(0); // Reset on resize
+      let perPage = 4;
+      if (width < 768) perPage = 1;
+      else if (width < 1024) perPage = 2;
+      else perPage = 4;
+
+      setItemsPerPage(perPage);
+      setCurrentPage(0); // Reset to first page on resize
     };
 
     updateItemsPerPage();
@@ -108,23 +116,38 @@ const NewLaunches = () => {
     return () => window.removeEventListener("resize", updateItemsPerPage);
   }, []);
 
-  // Calculate visible items
-  const visibleLaunches = launches.slice(startIndex, startIndex + itemsPerPage);
-
-  // Pagination logic
+  // Prev & Next logic (based on page, not index)
   const handleNext = () => {
-    if (startIndex + itemsPerPage < launches.length) {
-      setStartIndex(startIndex + itemsPerPage);
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
     }
   };
 
   const handlePrev = () => {
-    if (startIndex - itemsPerPage >= 0) {
-      setStartIndex(startIndex - itemsPerPage);
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
     }
   };
-
   const calculateEMI = (price) => (price / 6).toFixed(2);
+
+  // Determine right offset for Next button based on screen size
+  const [rightOffset, setRightOffset] = useState("0px");
+
+  useEffect(() => {
+    const updateRightOffset = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setRightOffset("0px"); // sm
+      } else if (width >= 768 && width < 1024) {
+        setRightOffset("10px"); // md
+      } else {
+        setRightOffset("-40px"); // lg and up
+      }
+    };
+    updateRightOffset();
+    window.addEventListener("resize", updateRightOffset);
+    return () => window.removeEventListener("resize", updateRightOffset);
+  }, []);
 
   return (
     <div style={{ width: "100%", backgroundColor: "#f8f9fa", height: "auto" }}>
@@ -315,7 +338,7 @@ const NewLaunches = () => {
           <button
             onClick={handleNext}
             className="btn btn-link position-absolute"
-            style={{ right: "0px", zIndex: 10 }}
+            style={{ right: rightOffset, zIndex: 10 }}
           >
             <svg
               width="24"

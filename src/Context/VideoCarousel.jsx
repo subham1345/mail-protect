@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 const NewLaunches = () => {
   const launches = [
@@ -104,46 +104,71 @@ const NewLaunches = () => {
   ];
 
   const [startIndex, setStartIndex] = useState(0);
-  const steps = [0, 4, 5];
-  const currentStepIndex = steps.indexOf(startIndex);
+  // const steps = [0, 4, 5];
+  // const currentStepIndex = steps.indexOf(startIndex);
 
   const [popupLaunch, setPopupLaunch] = useState(null);
   const [isMuted, setIsMuted] = useState(true);
+  const [itemsPerPage, setItemsPerPage] = useState(4);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setItemsPerPage(1);
+      } else if (width < 1024) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(4);
+      }
+      setStartIndex(0); // reset on resize
+    };
+
+    handleResize(); // initial
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Calculate visible launches
+  const visibleLaunches = launches.slice(startIndex, startIndex + itemsPerPage);
+
+  // Total pages
+  const totalPages = Math.ceil(launches.length / itemsPerPage);
+  const currentPage = Math.floor(startIndex / itemsPerPage);
+
+  // Navigation
   const handleNext = () => {
-    if (currentStepIndex < steps.length - 1) {
-      setStartIndex(steps[currentStepIndex + 1]);
+    if (currentPage < totalPages - 1) {
+      setStartIndex(startIndex + itemsPerPage);
     }
   };
 
   const handlePrev = () => {
-    if (currentStepIndex > 0) {
-      setStartIndex(steps[currentStepIndex - 1]);
+    if (currentPage > 0) {
+      setStartIndex(startIndex - itemsPerPage);
     }
   };
-
-  const visibleLaunches = launches.slice(
-    startIndex,
-    startIndex === 0 ? 4 : startIndex === 4 ? 8 : 9
-  );
 
   return (
     <div style={{ width: '100%', marginTop: '40px' }}>
       <div
         style={{
-          width: '85%',
+          width: '100%',
           margin: '0 auto',
           padding: '10px',
           position: 'relative',
-          marginLeft: '110px', // Shift whole content slightly right
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          // marginLeft: '110px', // Shift whole content slightly right
         }}
       >
-        <div style={{ position: 'relative' }}>
+        <div  style={{ position: 'relative',width:'80%' }}>
           <button
             onClick={handlePrev}
             style={{
               position: 'absolute',
-              left: '-32px',
+              left: '-40px',
               top: '50%',
               transform: 'translateY(-50%)',
               background: 'none',
@@ -173,11 +198,14 @@ const NewLaunches = () => {
 
           <div
             style={{
+              width: '100%',
               display: 'flex',
               gap: '10px',
-              justifyContent: 'start',
+              justifyContent:'center',
+              alignItems: 'center',
               flexWrap: 'nowrap',
               overflow: 'hidden',
+
             }}
           >
             {visibleLaunches.map((launch, idx) => (
@@ -193,7 +221,7 @@ const NewLaunches = () => {
                   fontWeight: '500',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'start',
+                  justifyContent: 'space-between',
                   alignItems: 'center',
                   boxSizing: 'border-box',
                   cursor: 'default',
@@ -334,7 +362,7 @@ const NewLaunches = () => {
             onClick={handleNext}
             style={{
               position: 'absolute',
-              right: '-15px',
+              right: '-40px',
               top: '50%',
               transform: 'translateY(-50%)',
               background: 'none',
